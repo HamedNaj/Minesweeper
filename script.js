@@ -12,8 +12,8 @@ const SIZES = {
   "beginner": {fontSize: '4rem', boardSizeX: 6, boardSizeY: 8, mines: 10},
   "intermediate": {fontSize: '2rem', boardSizeX: 9, boardSizeY: 12, mines: 20},
   "hard": {fontSize: '2rem', boardSizeX: 12, boardSizeY: 16, mines: 30},
-  "expert": {fontSize: '1.7rem', boardSizeX: 18, boardSizeY: 24, mines: 60},
-  "professional": {fontSize: '1.2rem', boardSizeX: 24, boardSizeY: 32, mines: 99}
+  "expert": {fontSize: '1.3rem', boardSizeX: 18, boardSizeY: 24, mines: 60},
+  "professional": {fontSize: '1.0rem', boardSizeX: 24, boardSizeY: 32, mines: 99}
 }
 
 export let LOCK_GAME = false
