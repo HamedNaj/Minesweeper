@@ -8,25 +8,32 @@
     <title>Minesweeper</title>
 </head>
 <body>
-<h3 class="title">Minesweeper</h3>
-<span class="refresh"></span>
-<div class="subtext">
-    Mines Left: <span data-mine-count> 10 </span>
-</div>
-<div class="input_container">
-    <label> Board Size</label>
-    <select  id="boardSize" >
-        <option >beginner</option>
-        <option selected="selected">intermediate</option>
-        <option >hard</option>
-        <option >expert</option>
-        <option >professional</option>
-    </select>
-    <label> Number of Mines</label>
-    <input type="number" id="numberOfMines" placeholder="Number of Mines"/>
-    <button id="startBtn"> Start</button>
-</div>
-<div class="board"></div>
 
+<div class="body__container">
+    <div class="input_container">
+        <label> Board Size</label>
+        <select id="boardSize">
+            <option>beginner</option>
+            <option selected="selected">intermediate</option>
+            <option>hard</option>
+            <option>expert</option>
+            <option>professional</option>
+        </select>
+        <label> Number of Mines</label>
+        <input type="number" id="numberOfMines" placeholder="Number of Mines"/>
+        <button id="startBtn"> Start</button>
+    </div>
+    <div class="board__container">
+        <h3 class="title">Minesweeper</h3>
+        <span class="refresh"></span>
+        <div class="subtext">
+            Mines Left: <span data-mine-count> 10 </span>
+        </div>
+        <div class="board"></div>
+    </div>
+    <div class="dummy">
+
+    </div>
+</div>
 </body>
 </html>

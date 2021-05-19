@@ -9,11 +9,11 @@ import {
 } from './minesweeper.js'
 
 const SIZES = {
-  "beginner": {fontSize: '4rem', cellSize: '80px', boardSizeX: 7, boardSizeY: 10},
-  "intermediate": {fontSize: '2rem', cellSize: '50px', boardSizeX: 9, boardSizeY: 15},
-  "hard": {fontSize: '2rem', cellSize: '40px', boardSizeX: 12, boardSizeY: 20},
-  "expert": {fontSize: '1.7rem', cellSize: '25px', boardSizeX: 15, boardSizeY: 30},
-  "professional": {fontSize: '1.5rem', cellSize: '20px', boardSizeX: 20, boardSizeY: 40}
+  "beginner": {fontSize: '4rem', boardSizeX: 6, boardSizeY: 8},
+  "intermediate": {fontSize: '2rem', boardSizeX: 9, boardSizeY: 12},
+  "hard": {fontSize: '2rem', boardSizeX: 12, boardSizeY: 16},
+  "expert": {fontSize: '1.7rem', boardSizeX: 18, boardSizeY: 24},
+  "professional": {fontSize: '1.5rem', boardSizeX: 24, boardSizeY: 32}
 }
 
 export let LOCK_GAME = false
@@ -100,7 +100,6 @@ function refreshBoard() {
   const key = boardSizeElement.value
   boardElement.style.setProperty('--sizeX', SIZES[key].boardSizeX)
   boardElement.style.setProperty('--sizeY', SIZES[key].boardSizeY)
-  boardElement.style.setProperty('--cellSize', SIZES[key].cellSize)
   boardElement.style.setProperty('--fontSize', SIZES[key].fontSize)
   minesLeftText.textContent = NUMBER_OF_MINES
   LOCK_GAME = false
@@ -117,7 +116,6 @@ function refreshBoard() {
   board.forEach(row => {
     row.forEach(tile => {
       boardElement.append(tile.element)
-      tile.element.style.fontSize = '70%'
       tile.element.addEventListener('click', () => {
         revealTile(board, tile)
         checkGameEnd()
