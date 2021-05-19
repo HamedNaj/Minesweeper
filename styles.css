@@ -81,7 +81,6 @@ body {
 .board > [data-status="mine"]::after {
     content: '\1F4A3';
     color: black;
-    margin: 0 5px 5px 0 ;
 }
 
 .board > [data-status="number"] {
@@ -94,7 +93,6 @@ body {
 .board > [data-status="marked"]::after {
     content: '\26F3';
     color: black;
-    margin: 0 5px 5px 0 ;
 }
 .main_container{
     display: flex;

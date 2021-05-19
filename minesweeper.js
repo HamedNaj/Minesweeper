@@ -75,7 +75,7 @@ export function revealAdjacentTile(board, tile) {
 }
 
 function getMinePositions({X,Y}, numberOfMines) {
-  const positions = []
+    const positions = []
   while (positions.length < numberOfMines) {
     const position = {x: randomNumber(X), y: randomNumber(Y)}
     if (!positions.some(p => positionMatch(p, position))) {

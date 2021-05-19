@@ -9,11 +9,11 @@ import {
 } from './minesweeper.js'
 
 const SIZES = {
-  "beginner": {fontSize: '4rem', boardSizeX: 6, boardSizeY: 8},
-  "intermediate": {fontSize: '2rem', boardSizeX: 9, boardSizeY: 12},
-  "hard": {fontSize: '2rem', boardSizeX: 12, boardSizeY: 16},
-  "expert": {fontSize: '1.7rem', boardSizeX: 18, boardSizeY: 24},
-  "professional": {fontSize: '1.5rem', boardSizeX: 24, boardSizeY: 32}
+  "beginner": {fontSize: '4rem', boardSizeX: 6, boardSizeY: 8, mines: 10},
+  "intermediate": {fontSize: '2rem', boardSizeX: 9, boardSizeY: 12, mines: 20},
+  "hard": {fontSize: '2rem', boardSizeX: 12, boardSizeY: 16, mines: 30},
+  "expert": {fontSize: '1.7rem', boardSizeX: 18, boardSizeY: 24, mines: 60},
+  "professional": {fontSize: '1.2rem', boardSizeX: 24, boardSizeY: 32, mines: 99}
 }
 
 export let LOCK_GAME = false
@@ -25,10 +25,13 @@ const numberOfMines = document.getElementById('numberOfMines')
 const startBtn = document.querySelector('#startBtn')
 
 let BOARD_SIZE = {x: SIZES[boardSizeElement.value].boardSizeX, y: SIZES[boardSizeElement.value].boardSizeY}
-let NUMBER_OF_MINES = 8
-
+let NUMBER_OF_MINES = SIZES[boardSizeElement.value].mines
 numberOfMines.value = NUMBER_OF_MINES
 
+boardSizeElement.addEventListener('change', () => {
+  NUMBER_OF_MINES = SIZES[boardSizeElement.value].mines
+  numberOfMines.value = NUMBER_OF_MINES
+})
 refresh.addEventListener('click', () => {
   refreshBoard()
 })
@@ -39,7 +42,6 @@ startBtn.addEventListener('click', () => {
     return
   }
   BOARD_SIZE = {x: SIZES[boardSizeElement.value].boardSizeX, y: SIZES[boardSizeElement.value].boardSizeY}
-  NUMBER_OF_MINES = numberOfMines.value
   refreshBoard()
 })
 
@@ -57,7 +59,7 @@ function listMinesLeft() {
   const markedTilesCount = board.reduce((count, row) => {
     return count + row.filter(tile => tile.status === TILE_STATUSES.MARKED).length
   }, 0)
-  minesLeftText.textContent = NUMBER_OF_MINES - markedTilesCount
+  minesLeftText.textContent = numberOfMines.value - markedTilesCount
 }
 
 function checkGameEnd() {
@@ -101,7 +103,7 @@ function refreshBoard() {
   boardElement.style.setProperty('--sizeX', SIZES[key].boardSizeX)
   boardElement.style.setProperty('--sizeY', SIZES[key].boardSizeY)
   boardElement.style.setProperty('--fontSize', SIZES[key].fontSize)
-  minesLeftText.textContent = NUMBER_OF_MINES
+  minesLeftText.textContent = numberOfMines.value
   LOCK_GAME = false
   refresh.textContent = '😇'
   let child = boardElement.lastElementChild;
@@ -112,7 +114,7 @@ function refreshBoard() {
   board = createBoard({
     X: SIZES[boardSizeElement.value].boardSizeX,
     Y: SIZES[boardSizeElement.value].boardSizeY
-  }, NUMBER_OF_MINES)
+  }, numberOfMines.value)
   board.forEach(row => {
     row.forEach(tile => {
       boardElement.append(tile.element)
