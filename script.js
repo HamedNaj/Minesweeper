@@ -147,7 +147,7 @@ function refreshBoard() {
 
 setInterval(function () {
   if (GAME_STARTED) {
-    timer++
     document.getElementById("timer").innerHTML = 'Time: ' + timer + "s ";
+    timer++
   }
 }, 1000);
