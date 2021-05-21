@@ -15,9 +15,10 @@ const SIZES = {
   "expert": {fontSize: '1.3rem', boardSizeX: 18, boardSizeY: 24, mines: 60},
   "professional": {fontSize: '1.0rem', boardSizeX: 24, boardSizeY: 32, mines: 99}
 }
-
+let GAME_STARTED = false
 export let LOCK_GAME = false
 let board
+let timer = 0
 const boardElement = document.querySelector('.board')
 const refresh = document.querySelector('.refresh')
 const boardSizeElement = document.getElementById('boardSize')
@@ -36,7 +37,6 @@ refresh.addEventListener('click', () => {
   refreshBoard()
 })
 startBtn.addEventListener('click', () => {
-
   if (numberOfMines.value < 1 || numberOfMines < 1) {
     window.alert('inputs are wrong')
     return
@@ -67,6 +67,7 @@ function checkGameEnd() {
   const lose = checkLose(board)
   if (win || lose) {
     LOCK_GAME = true
+    GAME_STARTED = false
   }
   if (win) {
     refresh.textContent = '😎'
@@ -99,6 +100,9 @@ function checkGameEnd() {
 
 
 function refreshBoard() {
+  GAME_STARTED = false
+  timer = 0
+  document.getElementById("timer").innerHTML = 'Time: ' + timer + "s ";
   const key = boardSizeElement.value
   boardElement.style.setProperty('--sizeX', SIZES[key].boardSizeX)
   boardElement.style.setProperty('--sizeY', SIZES[key].boardSizeY)
@@ -119,6 +123,7 @@ function refreshBoard() {
     row.forEach(tile => {
       boardElement.append(tile.element)
       tile.element.addEventListener('click', () => {
+        if (!GAME_STARTED) GAME_STARTED = true
         revealTile(board, tile)
         checkGameEnd()
       })
@@ -138,3 +143,11 @@ function refreshBoard() {
   listMinesLeft()
   return board
 }
+
+
+setInterval(function () {
+  if (GAME_STARTED) {
+    timer++
+    document.getElementById("timer").innerHTML = 'Time: ' + timer + "s ";
+  }
+}, 1000);
