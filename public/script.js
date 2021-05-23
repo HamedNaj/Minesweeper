@@ -7,9 +7,10 @@ import {
   checkLose,
   revealAdjacentTile
 } from './minesweeper.js'
+import {getScoreboard} from './scoreboard.js'
 
 const SIZES = {
-  "beginner": {fontSize: '4rem', boardSizeX: 6, boardSizeY: 8, mines: 10},
+  "beginner": {fontSize: '4rem', boardSizeX: 6, boardSizeY: 8, mines: 6},
   "intermediate": {fontSize: '2rem', boardSizeX: 9, boardSizeY: 12, mines: 20},
   "hard": {fontSize: '2rem', boardSizeX: 12, boardSizeY: 16, mines: 30},
   "expert": {fontSize: '1.3rem', boardSizeX: 18, boardSizeY: 24, mines: 60},
@@ -24,6 +25,7 @@ const refresh = document.querySelector('.refresh')
 const boardSizeElement = document.getElementById('boardSize')
 const numberOfMines = document.getElementById('numberOfMines')
 const startBtn = document.querySelector('#startBtn')
+const modal = document.getElementById("myModal");
 
 let BOARD_SIZE = {x: SIZES[boardSizeElement.value].boardSizeX, y: SIZES[boardSizeElement.value].boardSizeY}
 let NUMBER_OF_MINES = SIZES[boardSizeElement.value].mines
@@ -42,6 +44,7 @@ startBtn.addEventListener('click', () => {
     return
   }
   BOARD_SIZE = {x: SIZES[boardSizeElement.value].boardSizeX, y: SIZES[boardSizeElement.value].boardSizeY}
+  getScoreboard(boardSizeElement.value)
   refreshBoard()
 })
 
@@ -79,6 +82,9 @@ function checkGameEnd() {
       })
     })
     listMinesLeft()
+    console.log(NUMBER_OF_MINES,SIZES[boardSizeElement.value].mines)
+    if (NUMBER_OF_MINES == SIZES[boardSizeElement.value].mines)
+      modal.style.display = "block";
   }
 
   if (lose) {
@@ -100,7 +106,9 @@ function checkGameEnd() {
 
 
 function refreshBoard() {
+  modal.style.display = "none";
   GAME_STARTED = false
+  NUMBER_OF_MINES = numberOfMines.value
   timer = 0
   document.getElementById("timer").innerHTML = 'Time: ' + timer + "s ";
   const key = boardSizeElement.value

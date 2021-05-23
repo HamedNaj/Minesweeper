@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" type="module"></script>
     <script src="scoreboard.js" type="module"></script>
+    <script src="modal.js" type="module"></script>
     <title>Minesweeper</title>
 </head>
 <body>
@@ -36,10 +37,27 @@
         <div class="board"></div>
     </div>
     <div class="score__board">
-        <ul>
+        <h2 id="score__board_type"></h2>
+        <h4>Names     ||    Records</h4>
+        <ul id="score__board_id">
 
         </ul>
     </div>
+</div>
+<button id="myBtn">Open Modal</button>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <!--<span class="close">&times;</span>-->
+        <p>your score is : <span id="score"></span></p>
+        <input id="name_input" placeholder="Insert your name" maxlength="10"/>
+        <div class="modal_btn_container">
+            <button id="modal_confirm">Confirm</button>
+            <button id="modal_cancel">Cancel</button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

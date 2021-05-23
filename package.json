@@ -1,0 +1,31 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/minesweeper.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HamedNaj/Minesweeper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HamedNaj/Minesweeper/issues"
+  },
+  "homepage": "https://github.com/HamedNaj/Minesweeper#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "0.0.16",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "lodash": "^4.17.21",
+    "moment-jalaali": "^0.9.2",
+    "mongoose": "^5.12.10",
+    "nodemon": "^2.0.7"
+  }
+}
