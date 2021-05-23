@@ -53,5 +53,5 @@ router.post('/scoreboard'
 app.use(router.routes())
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log('server running on 3000')
+  console.log(`server running on ${process.env.PORT || 3000}`)
 });

@@ -10,7 +10,7 @@ export function getScoreboard(type) {
     scoreboardUl.removeChild(child);
     child = scoreboardUl.lastElementChild;
   }
-  fetch(`http://localhost:3000/scoreboard/${type}`, {
+  fetch(`/scoreboard/${type}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ export function getScoreboard(type) {
 }
 
 export function saveScore(params) {
-  fetch(`http://localhost:3000/scoreboard`, {
+  fetch(`/scoreboard`, {
     method: 'POST',
     body: JSON.stringify(params),
     headers: {
