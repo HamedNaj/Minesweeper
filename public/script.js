@@ -82,7 +82,7 @@ function checkGameEnd() {
       })
     })
     listMinesLeft()
-    console.log(NUMBER_OF_MINES,SIZES[boardSizeElement.value].mines)
+    console.log(NUMBER_OF_MINES, SIZES[boardSizeElement.value].mines)
     if (NUMBER_OF_MINES == SIZES[boardSizeElement.value].mines)
       modal.style.display = "block";
   }
@@ -146,6 +146,11 @@ function refreshBoard() {
           revealAdjacentTile(board, tile)
           checkGameEnd()
         }
+      })
+      tile.element.addEventListener('dblclick', e => {
+        e.preventDefault()
+        revealAdjacentTile(board, tile)
+        checkGameEnd()
       })
     })
   })
