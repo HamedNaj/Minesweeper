@@ -26,6 +26,8 @@ const boardSizeElement = document.getElementById('boardSize')
 const numberOfMines = document.getElementById('numberOfMines')
 const startBtn = document.querySelector('#startBtn')
 const modal = document.getElementById("myModal");
+const score = document.getElementById("score");
+const record = document.getElementById("timer");
 
 let BOARD_SIZE = {x: SIZES[boardSizeElement.value].boardSizeX, y: SIZES[boardSizeElement.value].boardSizeY}
 let NUMBER_OF_MINES = SIZES[boardSizeElement.value].mines
@@ -83,8 +85,11 @@ function checkGameEnd() {
     })
     listMinesLeft()
     console.log(NUMBER_OF_MINES, SIZES[boardSizeElement.value].mines)
-    if (NUMBER_OF_MINES == SIZES[boardSizeElement.value].mines)
+    if (NUMBER_OF_MINES == SIZES[boardSizeElement.value].mines) {
       modal.style.display = "block";
+      score.textContent = record.textContent.split(' ')[1].split('s')[0]
+      console.log('1111111111',record.textContent.split(' ')[1].split('s')[0])
+    }
   }
 
   if (lose) {

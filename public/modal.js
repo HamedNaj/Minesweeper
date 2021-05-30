@@ -3,7 +3,7 @@ import {saveScore} from './scoreboard.js'
 let modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-let btn = document.getElementById("myBtn");
+
 let name = document.getElementById("name_input");
 let record = document.getElementById("timer");
 let level = document.getElementById("score__board_type");
@@ -12,18 +12,13 @@ let level = document.getElementById("score__board_type");
 let cancel = document.getElementById("modal_cancel");
 let confirm = document.getElementById("modal_confirm");
 
-// When the user clicks on the button, open the modal
-btn.onclick = function () {
-  modal.style.display = "block";
-}
-
 // When the user clicks on <cancel> (x), close the modal
 cancel.onclick = function () {
   modal.style.display = "none";
 }
 confirm.onclick = function () {
   if (name.value) {
-    saveScore({name:name.value,record:record.textContent.split(' ')[1].split('s')[0],level:level.textContent})
+    saveScore({name: name.value, record: record.textContent.split(' ')[1].split('s')[0], level: level.textContent})
     modal.style.display = "none";
   }
 }
