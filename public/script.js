@@ -142,6 +142,7 @@ function refreshBoard() {
       })
       tile.element.addEventListener('mouseup', e => {
         if (e.button === 1) {
+          e.preventDefault()
           revealAdjacentTile(board, tile)
           checkGameEnd()
         }
